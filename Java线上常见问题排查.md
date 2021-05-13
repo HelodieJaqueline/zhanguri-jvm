@@ -63,7 +63,7 @@ java -jar arthas-boot.jar
 * watch
     watch com.zhangrui.jvm.controller.SlowController slow returnObj
 * trace 
-    com.zhangrui.jvm.controller.SlowController slow
+    trace com.zhangrui.jvm.controller.SlowController slow
 * ……
 
 
@@ -84,4 +84,5 @@ java -jar -Xms100M -Xmx100M -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+Prin
 * 死锁
     thread -b
 * 接口响应慢
+    trace com.zhangrui.jvm.controller.SlowController slow
     
