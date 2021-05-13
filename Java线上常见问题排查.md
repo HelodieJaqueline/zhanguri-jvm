@@ -2,6 +2,19 @@
 
 ## 常见问题分类
 
+### CPU飙高
+top 
+找到CPU使用率高的进程
+
+top -H -p [pid] 
+找到对应进程CPU使用率高的线程
+
+printf "%x\n" tid
+线程id转换成16进制
+
+jstack > jstack_jvm.txt
+dump 线程堆栈信息
+
 ### 内存溢出
 
 * Heap
@@ -9,11 +22,6 @@
 * Stack
 
 * MetaSpace
-
-### CPU飙高
-
-* 循环调用
-* 
 
 ### GC频繁
 
@@ -28,6 +36,8 @@
 * jstack
 * jstat
 * jmap
+* jconsole
+* jvisualvm
 
 
 ### Arthas
@@ -52,7 +62,8 @@ java -jar arthas-boot.jar
     jad com.zhangrui.jvm.controller.HeapController
 * watch
     watch com.zhangrui.jvm.controller.SlowController slow returnObj
-
+* trace 
+    com.zhangrui.jvm.controller.SlowController slow
 * ……
 
 
@@ -62,3 +73,15 @@ java -jar arthas-boot.jar
 
 启动应用
 java -jar -Xms100M -Xmx100M -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+PrintHeapAtGC -Xloggc:/data/logs/jvm/gc-%t.log -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/logs/jvm/java_heapdump.hprof zhanguri-jvm-0.0.1-SNAPSHOT.jar &
+
+
+
+* 内存溢出、FullGC频繁
+  dashboard
+  查询内存使用情况、GC次数及时间、dump内存
+* CPU使用率，负载很高
+    thread -n 3
+* 死锁
+    thread -b
+* 接口响应慢
+    

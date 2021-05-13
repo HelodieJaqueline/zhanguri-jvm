@@ -3,8 +3,6 @@ package com.zhangrui.jvm.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.concurrent.TimeUnit;
-
 /**
  * @description: CPU飙高
  * @author: ZhangRui
@@ -15,14 +13,11 @@ public class CPUHighUsageController {
 
 
     @GetMapping(value = "/cpuHighUsage")
-    public long cpuHighUsage() {
+    public long cpuHighUsage(Long limit) {
         long count = 0;
-        for (; ; ) {
+        do {
             count++;
-            if (count > 99999999999L) {
-                break;
-            }
-        }
+        } while (count <= limit);
         return count;
     }
 
