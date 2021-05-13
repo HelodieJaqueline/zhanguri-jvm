@@ -16,9 +16,10 @@ import java.util.concurrent.TimeUnit;
 public class SlowController {
 
     @GetMapping(value = "/slow")
-    public void slow() throws InterruptedException {
+    public Long slow(Long id) throws InterruptedException {
         log.info("接口响应慢！！！！");
         slowMethod();
+        return id;
     }
 
     private void slowMethod() throws InterruptedException {
