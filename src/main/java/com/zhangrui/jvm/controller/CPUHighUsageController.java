@@ -19,7 +19,7 @@ public class CPUHighUsageController {
         long count = 0;
         for (; ; ) {
             count++;
-            if (count > 19999999999L) {
+            if (count > 99999999999L) {
                 break;
             }
         }
